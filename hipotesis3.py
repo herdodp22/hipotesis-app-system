@@ -3,14 +3,14 @@ import math
 
 
 def penjumlahan(event):
-    n1 = int(n10.get())
-    n2 = int(n20.get())
+    n1 = float(n10.get())
+    n2 = float(n20.get())
     
-    x1 = int(x10.get())
-    x2 = int(x20.get())
+    x1 = float(x10.get())
+    x2 = float(x20.get())
     
-    s1 = int(s10.get())
-    s2 = int(s20.get())
+    s1 = float(s10.get())
+    s2 = float(s20.get())
 
     akarn = math.sqrt(((s1**2)/n1) + ((s2**2)/n2))
     
@@ -18,7 +18,7 @@ def penjumlahan(event):
     
     
     
-    if z0 < -1.96 :
+    if z0 < 2.120 :
         labelH0ditolak = Label(root, text="H0 ditolak")
         labelH0ditolak.grid(row=7, column=1)
     else :
