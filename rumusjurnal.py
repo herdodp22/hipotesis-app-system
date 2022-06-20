@@ -70,32 +70,32 @@ def perhitungan() :
     
     
     
-    def clear() :
-        inputdata1.delete(0, END)
-        inputdata2.delete(0, END)
-        inputdata3.delete(0, END)
-        inputdata4.delete(0, END)
-        inputdata5.delete(0, END)
-        inputdata6.delete(0, END)
-        inputdata7.delete(0, END)
-        inputdata8.delete(0, END)
+def clear() :
+    inputdata1.delete(0, END)
+    inputdata2.delete(0, END)
+    inputdata3.delete(0, END)
+    inputdata4.delete(0, END)
+    inputdata5.delete(0, END)
+    inputdata6.delete(0, END)
+    inputdata7.delete(0, END)
+    inputdata8.delete(0, END)
         
-        inputdata11.delete(0, END)
-        inputdata22.delete(0, END)
-        inputdata33.delete(0, END)
-        inputdata44.delete(0, END)
-        inputdata55.delete(0, END)
-        inputdata66.delete(0, END)
-        inputdata77.delete(0, END)
-        inputdata88.delete(0, END)
+    inputdata11.delete(0, END)
+    inputdata22.delete(0, END)
+    inputdata33.delete(0, END)
+    inputdata44.delete(0, END)
+    inputdata55.delete(0, END)
+    inputdata66.delete(0, END)
+    inputdata77.delete(0, END)
+    inputdata88.delete(0, END)
         
-        insertrata2totaldatatable1.delete(0, END)
-        insertrata2totaldatatable2.delete(0, END)
-        insertsimpangbaku1.delete(0, END)
-        insertsimpangbaku2.delete(0, END)
-        inserttotaldatatable1.delete(0, END)
-        inserttotaldatatable2.delete(0, END)
-        insertttable.delete(0, END)
+    insertrata2totaldatatable1.delete(0, END)
+    insertrata2totaldatatable2.delete(0, END)
+    insertsimpangbaku1.delete(0, END)
+    insertsimpangbaku2.delete(0, END)
+    inserttotaldatatable1.delete(0, END)
+    inserttotaldatatable2.delete(0, END)
+    insertttable.delete(0, END)
         
         
     
@@ -263,15 +263,15 @@ inserttotaldatatable2.place(x=130, y=370)
 rata2totaldatatable1 = Label(root, text="rata2 data 1 (x1) : ")
 rata2totaldatatable1.place(x=10, y=400)
 
-insertrata2totaldatatable1 = Entry(root)
-insertrata2totaldatatable1.place(x=130, y=400)
+insertrata2totaldatatable2 = Entry(root)
+insertrata2totaldatatable2.place(x=130, y=400)
 
 # rata rata data table 2
 rata2totaldatatable2 = Label(root, text="rata2 data 2 (x2): ")
 rata2totaldatatable2.place(x=10, y=430)
 
-insertrata2totaldatatable2 = Entry(root)
-insertrata2totaldatatable2.place(x=130, y=430)
+insertrata2totaldatatable1 = Entry(root)
+insertrata2totaldatatable1.place(x=130, y=430)
 
 
 # simpang baku data 1
