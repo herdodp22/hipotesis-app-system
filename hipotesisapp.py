@@ -13,31 +13,7 @@ _, ICON_PATH = tempfile.mkstemp()
 with open(ICON_PATH, 'wb') as icon_file:
     icon_file.write(ICON)
 
-
-def dropdown() :
-    print("menu klik 1")
     
-    
-# launch utama uji sample besar
-def penjumlahan():
-    x = float(x0.get())
-    miu0 = float(m0.get())
-    a = float(a0.get())
-    n = float(n0.get())
-
-    akarn = math.sqrt(n)
-    
-    z0 = (x - miu0)/(a/akarn)
-    
-    
-    if z0 > 1.96 :
-        labelH0ditolak = Label(root, text="H0 ditolak")
-        labelH0ditolak.place(x=10, y=190)
-    else :
-        labelH0diterima = Label(root, text="H0 diterima")
-        labelH0diterima.place(x=10, y=190)
-    
-    hasil.insert(0,float(z0))
     
     
     
@@ -63,7 +39,7 @@ def ujibesar():
         z0 = (x - miu0)/(a/akarn)
     
     
-        if z0 > 1.96 :
+        if z0 > 1.96 and z0 < -1.96 :
             labelH0ditolak = Label(root, text="H0 ditolak")
             labelH0ditolak.place(x=10, y=190)
         else :
@@ -73,32 +49,14 @@ def ujibesar():
         hasil.insert(0,float(z0))
     
     
-        
-    
-    
-    
-    
     root1 = Tk()
-    root1.title("aplikasi uji sampel besar")
+    root1.title("Uji statistika")
     root1.geometry("300x300")
     root1.resizable(0,0)
     root1.iconbitmap(default=ICON_PATH)
    
 
-    menu = Menu(root1)
-    root1.config(menu = menu)
-    submenu = Menu(menu)
-    menu.add_cascade(label = "Tools", menu = submenu)
-    submenu.add_command(label = "Uji sampel ukuran besar", command = ujibesar)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji sampel ukuran kecil", command = ujikecil)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji perbedaan besar & kecil", command = ujibesardankecil)
-
-    editmenu = Menu(menu)
-    menu.add_cascade(label = "about", menu = editmenu)
-    editmenu.add_command(label = "Tentang aplikasi", command = tentang)
-
+   
       
     # judul
     judul = Label(root1, text="UJI SAMPEL UKURAN BESAR")
@@ -143,8 +101,6 @@ def ujibesar():
     button = Button(root1, text="HASIL", relief=RAISED, command=pengujianbesar)
     button.place(x=100, y=200)
     
-    
-
     root1.mainloop()
    
     
@@ -160,12 +116,20 @@ def ujibesar():
 
 
 
+
+
+
+
+
+
+
+
+
+
 # uji kecil
 def ujikecil():
-    ujibesar_frame.forget()
-    ujibesardankecil_frame()
     root2 = Tk()
-    root2.title("aplikasi uji sampel kecil")
+    root2.title("Uji statistika")
     root2.geometry("300x300")
     root2.resizable(0,0)
     root2.iconbitmap(default=ICON_PATH)
@@ -183,29 +147,14 @@ def ujikecil():
         z0 = (x - miu0)/(a/akarn)
         
         
-        if z0 > 1.96 :
+        if z0 < -1.65 :
             labelH0ditolak = Label(root, text="H0 ditolak")
             labelH0ditolak.place(x=10, y=190)
-        else :
+        elif z0 >= -1.65 :
             labelH0diterima = Label(root, text="H0 diterima")
             labelH0diterima.place(x=10, y=190)
         
         hasil.insert(0,float(z0))
-
-
-    menu = Menu(root2)
-    root2.config(menu = menu)
-    submenu = Menu(menu)
-    menu.add_cascade(label = "Tools", menu = submenu)
-    submenu.add_command(label = "Uji sampel ukuran besar", command = ujibesar)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji sampel ukuran kecil", command = ujikecil)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji perbedaan besar & kecil", command = ujibesardankecil)
-
-    editmenu = Menu(menu)
-    menu.add_cascade(label = "about", menu = editmenu)
-    editmenu.add_command(label = "Tentang aplikasi", command = tentang)
 
       
     # judul
@@ -267,12 +216,28 @@ def ujikecil():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # uji besar dan kecil
 def ujibesardankecil():
-    ujikecil_frame.forget()
-    ujibesar_frame.forget()
     root3 = Tk()
-    root3.title("aplikasi uji sampel besar dan kecil")
+    root3.title("Uji statistika")
     root3.geometry("300x300")
     root3.resizable(0,0)
     root3.iconbitmap(default=ICON_PATH)
@@ -294,29 +259,14 @@ def ujibesardankecil():
     
     
     
-        if z0 < 2.120 :
+        if z0 < -1.96 :
             labelH0ditolak = Label(root3, text="H0 ditolak")
             labelH0ditolak.place(x=10, y=270)
-        else :
+        elif z0 >= -1.96 :
             labelH0diterima = Label(root3, text="H0 diterima")
             labelH0diterima.place(x=10, y=270)
         
         hasil.insert(0,z0)
-
-
-    menu = Menu(root3)
-    root3.config(menu = menu)
-    submenu = Menu(menu)
-    menu.add_cascade(label = "Tools", menu = submenu)
-    submenu.add_command(label = "Uji sampel ukuran besar", command = ujibesar)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji sampel ukuran kecil", command = ujikecil)
-    submenu.add_separator()
-    submenu.add_command(label = "Uji perbedaan besar & kecil", command = ujibesardankecil)
-
-    editmenu = Menu(menu)
-    menu.add_cascade(label = "about", menu = editmenu)
-    editmenu.add_command(label = "Tentang aplikasi", command = tentang)
 
       
     # judul
@@ -398,6 +348,16 @@ def tentang() :
 
 
 
+
+
+
+
+
+
+
+
+
+
 # primary launch
 root = Tk()
 root.title("aplikasi uji hipotesis")
@@ -406,9 +366,6 @@ root.resizable(0,0)
 root.iconbitmap(default=ICON_PATH)
 label = tkinter.Label(root, text="Window with transparent icon.")
 
-ujibesar_frame = Frame(root)
-ujikecil_frame = Frame(root)
-ujibesardankecil_frame = Frame(root)
 
 
 
@@ -432,8 +389,8 @@ editmenu.add_command(label = "Tentang aplikasi", command = tentang)
     
     
 # judul
-judul = Label(root, text="UJI SAMPEL UKURAN BESAR")
-judul.place(x=70, y=10)
+judul = Label(root, text="SIMPANG BAKU (S)")
+judul.place(x=90, y=10)
 
    
 # x input
@@ -480,7 +437,7 @@ hasil.place(x=100, y=170)
 
 
 # tombol
-button = Button(root, text="HASIL", relief=RAISED, command=penjumlahan)
+button = Button(root, text="HASIL", relief=RAISED)
 button.place(x=100, y=200)
 
 
