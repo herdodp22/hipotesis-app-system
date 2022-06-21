@@ -1,10 +1,10 @@
-from email import message
+from ctypes import resize
 from tkinter import*
 import tempfile, base64, zlib
-from traceback import FrameSummary
 import tkinter
 import math
 import tkinter.messagebox
+from PIL import ImageTk, Image
 
 ICON = zlib.decompress(base64.b64decode('eJxjYGAEQgEBBiDJwZDBy'
     'sAgxsDAoAHEQCEGBQaIOAg4sDIgACMUj4JRMApGwQgF/ykEAFXxQRc='))
@@ -26,8 +26,6 @@ with open(ICON_PATH, 'wb') as icon_file:
     
 # uji besar
 def ujibesar():
-    
-    # launch utama uji sample besar
     def pengujianbesar():
         x = float(x0.get())
         miu0 = float(m0.get())
@@ -39,25 +37,36 @@ def ujibesar():
         z0 = (x - miu0)/(a/akarn)
     
     
-        if z0 > 1.96 and z0 < -1.96 :
-            labelH0ditolak = Label(root, text="H0 ditolak")
+        if z0 > 1.96 :
+            labelH0ditolak = Label(root1, text="H0 ditolak")
             labelH0ditolak.place(x=10, y=190)
-        else :
-            labelH0diterima = Label(root, text="H0 diterima")
+        elif z0 < -1.96  :
+            labelH0ditolak = Label(root1, text="H0 ditolak")
+            labelH0ditolak.place(x=10, y=190)
+        elif z0 > -1.96 :
+            labelH0diterima = Label(root1, text="H0 diterima")
+            labelH0diterima.place(x=10, y=190)
+        elif z0 < 1.96 :
+            labelH0diterima = Label(root1, text="H0 diterima")
             labelH0diterima.place(x=10, y=190)
         
-        hasil.insert(0,float(z0))
+        hasil1.insert(0,float(z0))
+    
+    
+    def hapus() :
+        x0.delete(0, END)
+        m0.delete(0, END)
+        a0.delete(0, END)
+        n0.delete(0, END)
+        hasil1.delete(0, END)
     
     
     root1 = Tk()
     root1.title("Uji statistika")
-    root1.geometry("300x300")
+    root1.geometry("300x250")
     root1.resizable(0,0)
     root1.iconbitmap(default=ICON_PATH)
-   
-
-   
-      
+    
     # judul
     judul = Label(root1, text="UJI SAMPEL UKURAN BESAR")
     judul.place(x=70, y=10)
@@ -70,7 +79,7 @@ def ujibesar():
     x0.place(x=100, y=50)
 
     # m0 input
-    labelm0 = Label(root1, text="U0")
+    labelm0 = Label(root1, text="𝜇0")
     labelm0.place(x=10, y=80)
 
     m0 = Entry(root1)
@@ -91,15 +100,21 @@ def ujibesar():
     n0.place(x=100, y=140)
 
     # kesimpulan 
-    labelhasil = Label(root1, text="kesimpulan")
+    labelhasil = Label(root1, text="Z0 / 𝛼 = 5% ")
     labelhasil.place(x=10, y=170)
 
-    hasil = Entry(root1)
-    hasil.place(x=100, y=170)
+    hasil1 = Entry(root1)
+    hasil1.place(x=100, y=170)
+    
+    
 
-    # tombol
-    button = Button(root1, text="HASIL", relief=RAISED, command=pengujianbesar)
-    button.place(x=100, y=200)
+    # tombol hasil
+    button = Button(root1, text="HASIL", relief=RAISED, bg='green',fg='white',command=pengujianbesar)
+    button.place(x=80, y=200)
+    
+    # tombol hapus
+    tombolhapus = Button(root1, text="CLEAR", bg='red',fg='white', relief=RAISED, command=hapus)
+    tombolhapus.place(x=150, y=200)
     
     root1.mainloop()
    
@@ -130,7 +145,7 @@ def ujibesar():
 def ujikecil():
     root2 = Tk()
     root2.title("Uji statistika")
-    root2.geometry("300x300")
+    root2.geometry("300x250")
     root2.resizable(0,0)
     root2.iconbitmap(default=ICON_PATH)
    
@@ -148,13 +163,21 @@ def ujikecil():
         
         
         if z0 < -1.65 :
-            labelH0ditolak = Label(root, text="H0 ditolak")
+            labelH0ditolak = Label(root2, text="H0 ditolak")
             labelH0ditolak.place(x=10, y=190)
         elif z0 >= -1.65 :
-            labelH0diterima = Label(root, text="H0 diterima")
+            labelH0diterima = Label(root2, text="H0 diterima")
             labelH0diterima.place(x=10, y=190)
         
-        hasil.insert(0,float(z0))
+        hasil2.insert(0,float(z0))
+    
+    def hapus() :
+        x0.delete(0, END)
+        m0.delete(0, END)
+        a0.delete(0, END)
+        n0.delete(0, END)
+        hasil2.delete(0, END)
+        
 
       
     # judul
@@ -169,7 +192,7 @@ def ujikecil():
     x0.place(x=100, y=50)
 
     # m0 input
-    labelm0 = Label(root2, text="U0")
+    labelm0 = Label(root2, text="𝜇0")
     labelm0.place(x=10, y=80)
 
     m0 = Entry(root2)
@@ -190,15 +213,21 @@ def ujikecil():
     n0.place(x=100, y=140)
 
     # kesimpulan 
-    labelhasil = Label(root2, text="kesimpulan")
+    labelhasil = Label(root2, text="Z0 / 𝛼 = 5% ")
     labelhasil.place(x=10, y=170)
 
-    hasil = Entry(root2)
-    hasil.place(x=100, y=170)
+    hasil2 = Entry(root2)
+    hasil2.place(x=100, y=170)
+    
 
-    # tombol
-    button = Button(root2, text="HASIL", relief=RAISED, command=pengujiankecil)
-    button.place(x=100, y=200)
+    # tombol hasil
+    button = Button(root2, text="HASIL",bg='green',fg='white',relief=RAISED, command=pengujiankecil)
+    button.place(x=80, y=200)
+    
+    # tombol clear
+    tombolhapus = Button(root2, text="CLEAR",bg='red',fg='white',relief=RAISED, command=hapus)
+    tombolhapus.place(x=150, y=200)
+    
     
   
     root2.mainloop()
@@ -267,65 +296,77 @@ def ujibesardankecil():
             labelH0diterima.place(x=10, y=270)
         
         hasil.insert(0,z0)
+    
+    def hapus() :
+        n10.delete(0, END)
+        n20.delete(0, END)
+        x10.delete(0, END)
+        x20.delete(0, END)
+        s10.delete(0, END)
+        s20.delete(0, END)
 
       
     # judul
     judul = Label(root3, text="UJI SAMPEL UKURAN BESAR DAN KECIL")
-    judul.place(x=70, y=10)
+    judul.place(x=45, y=10)
     
     # total data 1
     labelx = Label(root3, text="total data 1 (n1)")
     labelx.place(x=10, y=50)
 
     n10 = Entry(root3)
-    n10.place(x=100, y=50)
+    n10.place(x=130, y=50)
     
     # total data 2
     labelx = Label(root3, text="total data 2 (n2)")
     labelx.place(x=10, y=80)
 
     n20 = Entry(root3)
-    n20.place(x=100, y=80)
+    n20.place(x=130, y=80)
 
     # rata rata 1 
-    labelm0 = Label(root3, text="rata - rata 1 (x1)")
+    labelm0 = Label(root3, text="ukuran sampel 1 (x1)")
     labelm0.place(x=10, y=110)
 
     x10 = Entry(root3)
-    x10.place(x=100, y=110)
+    x10.place(x=130, y=110)
     
     # rata rata 2
-    labelm0 = Label(root3, text="rata - rata 2 (x2)")
+    labelm0 = Label(root3, text="ukuran sampel (x2)")
     labelm0.place(x=10, y=140)
 
     x20 = Entry(root3)
-    x20.place(x=100, y=140)
+    x20.place(x=130, y=140)
 
 
-    # simpang baku 1 
-    simpangbaku1 = Label(root3, text="simpang baku 1 (s1)")
+    # standar deviasi 1
+    simpangbaku1 = Label(root3, text="standar deviasi 1 (s1)")
     simpangbaku1.place(x=10, y=170)
 
     s10 = Entry(root3)
-    s10.place(x=100, y=170)
+    s10.place(x=130, y=170)
 
-    # simpang baku 2
-    simpangbaku2 = Label(root3, text="simpang baku 2 (s2)")
+    # standar deviasi 2
+    simpangbaku2 = Label(root3, text="standar deviasi 2 (s2)")
     simpangbaku2.place(x=10, y=200)
 
     s20 = Entry(root3)
-    s20.place(x=100, y=200)
+    s20.place(x=130, y=200)
 
     # kesimpulan 
-    labelhasil = Label(root3, text="kesimpulan")
+    labelhasil = Label(root3, text="Z0 / 𝛼 = 5%")
     labelhasil.place(x=10, y=230)
 
     hasil = Entry(root3)
-    hasil.place(x=100, y=230)
+    hasil.place(x=130, y=230)
 
-    # tombol
-    button = Button(root3, text="HASIL", relief=RAISED, command=pengujianbesardankecil)
-    button.place(x=100, y=260)
+    # tombol hasil
+    button = Button(root3, text="HASIL",bg='green',fg='white' ,relief=RAISED, command=pengujianbesardankecil)
+    button.place(x=80, y=260)
+    
+    # tombol clear
+    button = Button(root3, text="CLEAR",bg='red',fg='white' ,relief=RAISED, command=hapus)
+    button.place(x=150, y=260)
     
    
     root3.mainloop()
@@ -336,7 +377,8 @@ def ujibesardankecil():
     
 # about    
 def tentang() :
-    tkinter.messagebox.showinfo("Tentang", "Create by :Herdo dimas pratirto\nVersion : 1.0")
+    tkinter.messagebox.showinfo("Tentang", "Created by :Herdo dimas pratirto\nContact : herdodimas46@gmail.com\nPowered by : ITEBA dev community")
+    
 
 
 
@@ -361,7 +403,7 @@ def tentang() :
 # primary launch
 root = Tk()
 root.title("aplikasi uji hipotesis")
-root.geometry("300x300")
+root.geometry("300x400")
 root.resizable(0,0)
 root.iconbitmap(default=ICON_PATH)
 label = tkinter.Label(root, text="Window with transparent icon.")
@@ -372,7 +414,7 @@ label = tkinter.Label(root, text="Window with transparent icon.")
 
 menu = Menu(root)
 root.config(menu = menu)
-submenu = Menu(menu)
+submenu = Menu(menu,tearoff=0)
 menu.add_cascade(label = "Tools", menu = submenu)
 submenu.add_command(label = "Uji sampel ukuran besar", command = ujibesar)
 submenu.add_separator()
@@ -380,7 +422,7 @@ submenu.add_command(label = "Uji sampel ukuran kecil", command = ujikecil)
 submenu.add_separator()
 submenu.add_command(label = "Uji perbedaan besar & kecil", command = ujibesardankecil)
 
-editmenu = Menu(menu)
+editmenu = Menu(menu, tearoff=0)
 menu.add_cascade(label = "about", menu = editmenu)
 editmenu.add_command(label = "Tentang aplikasi", command = tentang)
 
@@ -389,56 +431,52 @@ editmenu.add_command(label = "Tentang aplikasi", command = tentang)
     
     
 # judul
-judul = Label(root, text="SIMPANG BAKU (S)")
-judul.place(x=90, y=10)
-
-   
-# x input
-labelx = Label(root, text="rata - rata (x)")
-labelx.place(x=10, y=50)
-
-x0 = Entry(root)
-x0.place(x=100, y=50)
-
-
-# m0 input
-labelm0 = Label(root, text="U0")
-labelm0.place(x=10, y=80)
-
-m0 = Entry(root)
-m0.place(x=100, y=80)
-
-
-# a input
-labela = Label(root, text="ragam")
-labela.place(x=10, y=110)
-
-a0 = Entry(root)
-a0.place(x=100, y=110)
-
-
-# n input
-labeln = Label(root, text="jumlah data (n)")
-labeln.place(x=10, y=140)
-
-n0 = Entry(root)
-n0.place(x=100, y=140)
-
-
-# kesimpulan 
-
-labelhasil = Label(root, text="kesimpulan")
-labelhasil.place(x=10, y=170)
-
-hasil = Entry(root)
-hasil.place(x=100, y=170)
+judul = Label(root, text="APLIKASI UJI STATISTIK SAMPEL")
+judul.place(x=60, y=10)
 
 
 
 
-# tombol
-button = Button(root, text="HASIL", relief=RAISED)
-button.place(x=100, y=200)
+# judul rumus uji besar
+judul1 = Label(root, text="Rumus uji sampel berukuran besar dan kecil")
+judul1.place(x=20, y=50)
+
+ # gambar rumus
+path1 = r"C:\Users\LENOVO\Desktop\hipotesis\ujibesar.png"
+photo1 = ImageTk.PhotoImage(Image.open(path1))
+labelimage1 = Label(root, image=photo1)
+labelimage1.place(x=20, y=70)
+
+
+
+
+
+# judul rumus uji besar dan kecil
+judul1 = Label(root, text="Rumus uji perbedaan dua rata - rata sampel\nberukuran besar dan kecil")
+judul1.place(x=20, y=190)
+
+# gambar rumus
+path2 = r"C:\Users\LENOVO\Desktop\hipotesis\ujibesardankecil.png"
+photo2 = ImageTk.PhotoImage(Image.open(path2))
+labelimage2 = Label(root, image=photo2)
+labelimage2.place(x=65, y=230)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
